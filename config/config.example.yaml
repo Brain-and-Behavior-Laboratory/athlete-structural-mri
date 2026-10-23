@@ -1,0 +1,79 @@
+paths:
+  # Directory for all intermediate files, logs, and CSV outputs.
+  analysis_root: "/path/to/analysis"
+
+  # Root of the downloaded brainlife anat/t1w datatype. The scripts expect
+  # direct child folders such as sub-1_001, sub-2_023, and sub-3_044.
+  # Leave blank if 00_download_brainlife.py should download into
+  # <analysis_root>/downloads/anat_t1w.
+  anat_t1w_root: "/path/to/downloaded/anat_t1w"
+
+  # Optional root containing the 42 downloaded FreeSurfer data objects.
+  # Leave blank to use <analysis_root>/downloads/freesurfer.
+  freesurfer_root: "/path/to/downloaded/freesurfer"
+
+brainlife:
+  publication_query: "Collegiate athlete brain data for white matter mapping and network neuroscience"
+  publication_doi: "10.25663/brainlife.pub.14"
+  release_id: ""
+
+  # Raw anatomical object folders in the downloaded datatype have names like:
+  # dt-neuro-anat-t1w.id-<DATA_OBJECT_ID>
+  # Preprocessed objects contain '.tag-' in their directory names and are not
+  # selected as the native T1 input by 01_prepare_dataset.py.
+  raw_t1_object_regex: "^dt-neuro-anat-t1w\\.id-[^.]+$"
+
+groups:
+  prefixes:
+    "1_": "AmericanFootball"
+    "2_": "CrossCountry"
+    "3_": "Control"
+  expected_counts:
+    AmericanFootball: 17
+    CrossCountry: 16
+    Control: 9
+
+vbm:
+  bet_option: "-b"
+  template_option: "-n"
+  smoothing_sigma_mm: 3
+  permutations: 5000
+  tfce_option: "-T"
+  corrected_alpha: 0.05
+  copy_mode: "copy"
+  first_last_n: 9
+  direct_football_n: 16
+
+first:
+  permutations: 10000
+  tfce_option: "-T"
+  corrected_alpha: 0.05
+  structures:
+    L_Accu: 26
+    R_Accu: 58
+    L_Amyg: 18
+    R_Amyg: 54
+    L_Caud: 11
+    R_Caud: 50
+    L_Hipp: 17
+    R_Hipp: 53
+    L_Pall: 13
+    R_Pall: 52
+    L_Puta: 12
+    R_Puta: 51
+    L_Thal: 10
+    R_Thal: 49
+    BrStem: 16
+
+fast:
+  number_of_classes: 3
+  # For three-class T1 FAST segmentation, these indices are used for the
+  # partial-volume maps produced by the analysis workflow.
+  pve_index:
+    CSF: 0
+    GM: 1
+    WM: 2
+  bet_fractional_intensity: null
+
+statistics:
+  fdr_alpha: 0.05

@@ -1,0 +1,11 @@
+name: athlete-structural-mri
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  - pandas
+  - scipy
+  - statsmodels
+  - nibabel
+  - pyyaml

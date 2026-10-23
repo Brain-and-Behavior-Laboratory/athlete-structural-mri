@@ -1,0 +1,36 @@
+# Local configuration
+config/config.yaml
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Operating system
+.DS_Store
+Thumbs.db
+
+# Local data / work / outputs if analysis_root is placed inside the repository
+data/
+downloads/
+metadata/
+work/
+csv/
+logs/
+tmp/
+
+# Neuroimaging data and FIRST surface parameters
+*.nii
+*.nii.gz
+*.mgz
+*.mgh
+*.bvars
+*.vtk
+
+# Brainlife authentication / local object metadata
+.jwt
+_brainlife_object.json
+brainlife_*_objects.json
+
